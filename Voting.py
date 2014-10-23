@@ -51,7 +51,11 @@ class Candidate:
 #voting_solve
 #------------
 def voting_solve(readfile):
-
+    """
+    the main method of the code
+    parses the incoming text files
+    and then calls the next method
+    """
     file = open(readfile, 'r')
     num_of_elections = int(file.readline())
     file.readline()
@@ -83,7 +87,10 @@ def voting_solve(readfile):
 #find_winner
 #-----------
 def find_winner(candidate_list, ballot_list):
-
+    """
+    this method counts the ballots
+    and checks to see if winners have been found
+    """
     while True:
         for candidate in candidate_list:
             candidate.flush()
@@ -110,6 +117,10 @@ def find_winner(candidate_list, ballot_list):
 #drop_marker
 #-----------
 def drop_marker (can_list, bal_list):
+    """
+    This is if there isn't a winner
+    It resets the markers on the ballots
+    """
     for v in can_list:
         if v.score !=0:
             lowest = v.score
@@ -143,6 +154,10 @@ def drop_marker (can_list, bal_list):
 #check_for_tie
 #-------------
 def check_for_tie(can_list):
+    """
+    this method is to check for the
+    corner case of ties
+    """
     winners = []
     for v in can_list:
         if v.score !=0:
