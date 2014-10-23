@@ -5,21 +5,20 @@ num_of_candidates = 0
 class Ballot:
 
     def __init__(self, a = list):
-    """
-    votes is an array of the ballot
-    marker is its current position
-    """
-    
+        """
+        votes is an array of the ballot
+        marker is its current position
+        """
         self.votes = a
         self.marker = 0
         
 
     def drop(self):
         """
-    read two ints
-    r a reader
-    return a list of two ints, representing the beginning and end of a range, [i, j]
-    """       
+        read two ints
+        r a reader
+        return a list of two ints, representing the beginning and end of a range, [i, j]
+        """       
         #print("drop",self.votes, self.marker,"???")
         if self.marker < len(self.votes)-1:
             self.marker += 1
@@ -29,12 +28,13 @@ class Ballot:
         return self.votes[self.marker]-1
 
 class Candidate:
-    """
-name is the name, score is how many ballots he got
-still_in tells you whether or not he got zero votes or not
-"""
+   
 
     def __init__ (self, a = str):
+        """
+        name is the name, score is how many ballots he got
+        still_in tells you whether or not he got zero votes or not
+        """
         self.name = a
         self.score = 0
         self.still_in = True
@@ -47,7 +47,9 @@ still_in tells you whether or not he got zero votes or not
         self.score += 1
         #print("add")
 
-
+#------------
+#voting_solve
+#------------
 def voting_solve(readfile):
 
     file = open(readfile, 'r')
@@ -77,7 +79,9 @@ def voting_solve(readfile):
                 key = False
         find_winner(candidate_list, ballot_list)
         
-
+#-----------
+#find_winner
+#-----------
 def find_winner(candidate_list, ballot_list):
 
     while True:
@@ -101,7 +105,10 @@ def find_winner(candidate_list, ballot_list):
                 return check_for_tie(candidate_list)
         drop_marker(candidate_list,ballot_list)
         #print("lowest")
-        
+
+#-----------
+#drop_marker
+#-----------
 def drop_marker (can_list, bal_list):
     for v in can_list:
         if v.score !=0:
@@ -131,7 +138,10 @@ def drop_marker (can_list, bal_list):
         ballot.drop()
     
     #print("dropmarker")
-    
+
+#-------------
+#check_for_tie
+#-------------
 def check_for_tie(can_list):
     winners = []
     for v in can_list:
