@@ -1,5 +1,5 @@
 num_of_elections = 0
-why = True
+why = False
 num_of_candidates = 0
 
 class Ballot:
@@ -15,7 +15,7 @@ class Ballot:
             self.marker += 1
 
     def vote(self):
-        print(self.votes[self.marker],self.votes, self.marker, "'''")
+        #print(self.votes[self.marker],self.votes, self.marker, "'''")
         return self.votes[self.marker]-1
 
 class Candidate:
@@ -27,11 +27,11 @@ class Candidate:
 
     def flush (self):
         self.score = 0
-        print("flush")
+        #print("flush")
 
     def add (self):
         self.score += 1
-        print("add")
+        #print("add")
 
 
 def voting_solve(readfile):
@@ -40,7 +40,7 @@ def voting_solve(readfile):
     num_of_elections = int(file.readline())
     file.readline()
     for v in range(num_of_elections):
-        print(v)
+        #print(v)
         num_of_candidates = int(file.readline())
         candidate_list = []
         for v in range(num_of_candidates):
@@ -51,15 +51,15 @@ def voting_solve(readfile):
         key = True
         while key:            
             a=(file.readline())
-            if a != "\n":
+            if a != "\n" and a!="":
                 b = []
                 c = a.split()
                 for v in c:
                     if v != " ":
                         b.append(int(v))
                 ballot_list.append(Ballot(b))
-               # print(b, len(b))
-            if a == "\n":
+                #print(b, len(b))
+            if a == "\n" or a == "":
                 key = False
         find_winner(candidate_list, ballot_list)
         
@@ -71,6 +71,8 @@ def find_winner(candidate_list, ballot_list):
             candidate.flush()
         for ballot in ballot_list:            
             candidate_list[ballot.vote()].add()
+        #for can in candidate_list:
+            #print(can.score, can.name)
         winners = []
         for v in range(len(candidate_list)):
             if candidate_list[v].score > len(ballot_list)/2:
@@ -147,4 +149,4 @@ def check_for_tie(can_list):
     return winners
     
     
-voting_solve("tests5.txt")
+voting_solve("tests.txt")
