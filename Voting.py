@@ -1,4 +1,5 @@
 num_of_elections = 0
+why = True
 num_of_candidates = 0
 
 class Ballot:
@@ -6,9 +7,10 @@ class Ballot:
     def __init__(self, a = list):
         self.votes = a
         self.marker = 0
+        
 
     def drop(self):
-        print("drop",self.votes, self.marker,"???")
+        #print("drop",self.votes, self.marker,"???")
         if self.marker < len(self.votes)-1:
             self.marker += 1
 
