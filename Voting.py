@@ -5,11 +5,21 @@ num_of_candidates = 0
 class Ballot:
 
     def __init__(self, a = list):
+    """
+    votes is an array of the ballot
+    marker is its current position
+    """
+    
         self.votes = a
         self.marker = 0
         
 
     def drop(self):
+        """
+    read two ints
+    r a reader
+    return a list of two ints, representing the beginning and end of a range, [i, j]
+    """       
         #print("drop",self.votes, self.marker,"???")
         if self.marker < len(self.votes)-1:
             self.marker += 1
@@ -19,6 +29,10 @@ class Ballot:
         return self.votes[self.marker]-1
 
 class Candidate:
+    """
+name is the name, score is how many ballots he got
+still_in tells you whether or not he got zero votes or not
+"""
 
     def __init__ (self, a = str):
         self.name = a
@@ -149,4 +163,4 @@ def check_for_tie(can_list):
     return winners
     
     
-voting_solve("tests.txt")
+#voting_solve("tests7.txt")
